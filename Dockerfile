@@ -27,8 +27,6 @@ VOLUME /videos
 VOLUME /photo
 VOLUME /music
 
-ADD nfs-client.sh /usr/local/bin/nfs-client
-
 ADD ./start.sh /start.sh
 RUN chmod u+x  /start.sh
 
