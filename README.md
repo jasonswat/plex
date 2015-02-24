@@ -1,6 +1,6 @@
 Most of the Dockerfile and start.sh is from https://github.com/timhaak/docker-plex
 It was changed a little for my environment
-It's running on a coreos system, note for how I built that are here:
+It's running on a coreos system. Notes for how I built that are here:
 https://github.com/jasonswat/coreos_pxe/ 
 
 To install the container:
