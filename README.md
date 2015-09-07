@@ -22,3 +22,38 @@ To allow your network access to configure plex edit this file:
 add "allowedNetworks=" for example:
 
     allowedNetworks="192.168.10.0/255.255.255.0"
+
+
+============================
+To update for a new release of the plex server:
+============================
+
+Download a new Dockerfile, I do this so I know which version of Dockerfile I am running
+
+    git clone https://github.com/jasonswat/plex.git
+
+Stop the running containter
+
+    docker stop jasonswat/plex (or container id)
+
+Then run a new container just to hold the volumes
+
+    docker run --volumes-from jasonswat/plex (or container id) --name my_plex_data busybox true
+
+Now you can remove old container
+
+    docker rm jasonswat/plex (or container id)
+
+Build the new image from the clone
+
+    cd plex
+
+    docker build -t jasonswat/plex --no-cache=false .
+
+Run the new container, using the volumes from the my_plex_data container you created
+
+    docker run -d -h plex --volumes-from my_plex_data -p 32400:32400 jasonswat/plex
+
+You can remove the temp container, or keep it around for your next update
+
+    docker rm my_plex_data
