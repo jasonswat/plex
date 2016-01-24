@@ -1,7 +1,12 @@
-Most of the Dockerfile and start.sh is from https://github.com/timhaak/docker-plex
+Most of the Dockerfile and start.sh are from https://github.com/timhaak/docker-plex
 It was changed a little for my environment
 It's running on a coreos system. Notes for how I built that are here:
 https://github.com/jasonswat/coreos_pxe/ 
+
+======================
+To pull the container and start the image
+=====================
+
 
 To install the container:
 
@@ -22,7 +27,6 @@ To allow your network access to configure plex edit this file:
 add "allowedNetworks=" for example:
 
     allowedNetworks="192.168.10.0/255.255.255.0"
-
 
 ============================
 To update for a new release of the plex server:
@@ -50,9 +54,10 @@ Build the new image from the clone
 
     docker build -t jasonswat/plex --no-cache=false .
 
-Run the new container, using the volumes from the my_plex_data container you created
+Run the new container, using the volumes from the my_plex_data container you created.
+I used a name that has the plex version in it, but the --name flag is optional
 
-    docker run -d -h plex --volumes-from my_plex_data -p 32400:32400 jasonswat/plex
+    docker run -d -h plex --volumes-from my_plex_data -p 32400:32400 --name plex_0.9.14.6.1620 jasonswat/plex
 
 You can remove the temp container, or keep it around for your next update
 
